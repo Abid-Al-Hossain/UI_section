@@ -7,7 +7,15 @@ import type { SectionState } from "../types";
 type Props = { state: SectionState; update: <K extends keyof SectionState>(key: K, value: SectionState[K]) => void };
 
 export default function StructureSection({ state, update }: Props) {
-  return <SectionCard title="Structure" subtitle="Structure controls for native layout/page-structure generation."><Select label="Heading" value={state.headingLevel} options={[
+  return <SectionCard title="Structure" subtitle="Choose the native section wrapper and heading level."><Select label="Semantic tag" value={state.element} options={[
+  "section",
+  "div",
+  "main",
+  "header",
+  "footer",
+  "aside",
+  "nav"
+]} onChange={(value) => update("element", value)} /><Select label="Heading" value={state.headingLevel} options={[
   "h1",
   "h2",
   "h3",
