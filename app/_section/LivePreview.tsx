@@ -4,7 +4,7 @@ import type { CSSProperties } from "react";
 import type { SectionState } from "../types";
 
 function box(state: SectionState): CSSProperties {
-  return { width: state.width, minHeight: state.height, paddingBlock: state.verticalRhythm, paddingInline: state.padding, margin: state.margin, borderRadius: state.radius, border: `${state.borderWidth}px solid ${state.border}`, boxShadow: `0 ${Math.round(state.shadow / 3)}px ${state.shadow}px rgba(0,0,0,.28)`, background: state.background, color: state.foreground, fontFamily: state.fontFamily };
+  return { width: state.width, minHeight: state.height, paddingBlock: state.verticalRhythm, paddingInline: state.padding, margin: state.margin, borderRadius: state.radius, border: `${state.borderWidth}px solid ${state.border}`, boxShadow: `0 ${Math.round(state.shadow / 3)}px ${state.shadow}px rgba(0,0,0,.28)`, background: state.background, color: state.foreground, fontFamily: state.fontFamily, transition: state.motion ? "background 0.2s ease, padding 0.2s ease" : "none" };
 }
 
 export default function LivePreview({ state }: { state: SectionState }) {
