@@ -27,7 +27,7 @@ export default function SectionComponent() {
     background: state.background,
     color: state.foreground,
     fontFamily: state.fontFamily,
-    transition: state.motion ? "background 0.2s ease, padding 0.2s ease" : "none"
+    transition: state.transitionDuration > 0 ? "$1" : "none"
   };
 
   return (
