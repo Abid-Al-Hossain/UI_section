@@ -57,7 +57,11 @@ export const DEFAULT_SECTION_STATE: SectionState = {
   "headingLevel": "h2",
   "contentWidth": 880,
   "verticalRhythm": 72,
-  "anchorId": "hero"
+  "anchorId": "hero",
+  "hoverEnabled": false,
+  "hoverBg": "rgba(56,189,248,0.06)",
+  "hoverBorder": "#38bdf8",
+  "hoverShadow": "0 12px 24px rgba(0,0,0,0.25)"
 };
 
 export const SECTION_PRESETS: StudioPreset[] = [

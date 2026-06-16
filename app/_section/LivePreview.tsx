@@ -1,6 +1,6 @@
 "use client";
 
-import type { CSSProperties } from "react";
+import { useState, type CSSProperties } from "react";
 import type { SectionState } from "../types";
 import { SYSTEM_FONTS } from "@/components/shared/typography/fontConstants";
 
@@ -35,6 +35,14 @@ export default function LivePreview({ state }: { state: SectionState }) {
   const Element = state.element === "hr" ? "section" : state.element;
   const Heading = state.headingLevel;
   const role = state.role === "presentation" || state.role === "group" || state.role === "region" ? state.role : undefined;
+  const [isHovered, setIsHovered] = useState(false);
+  const hovered = state.hoverEnabled && isHovered;
   const style = box(state);
-  return <Element id={state.anchorId || state.id} role={role} aria-label={state.landmarkLabel || undefined} tabIndex={state.tabIndex} style={style}><div style={{ maxWidth: state.contentWidth, marginInline: "auto", display: "grid", gap: state.gap }}><Heading style={{ margin: 0, fontSize: state.titleSize, fontWeight: state.fontWeight }}>{state.title}</Heading><p style={{ margin: 0, color: state.muted, fontSize: state.bodySize, lineHeight: 1.65 }}>{state.description}</p><div aria-hidden="true" style={{ height: 4, width: 96, borderRadius: 999, background: state.accent }} /></div></Element>;
+  const finalStyle: CSSProperties = {
+    ...style,
+    background: hovered ? state.hoverBg : style.background,
+    borderColor: hovered ? state.hoverBorder : state.border,
+    boxShadow: hovered ? state.hoverShadow : style.boxShadow,
+  };
+  return <Element id={state.anchorId || state.id} role={role} aria-label={state.landmarkLabel || undefined} tabIndex={state.tabIndex} style={finalStyle} onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}><div style={{ maxWidth: state.contentWidth, marginInline: "auto", display: "grid", gap: state.gap }}><Heading style={{ margin: 0, fontSize: state.titleSize, fontWeight: state.fontWeight }}>{state.title}</Heading><p style={{ margin: 0, color: state.muted, fontSize: state.bodySize, lineHeight: 1.65 }}>{state.description}</p><div aria-hidden="true" style={{ height: 4, width: 96, borderRadius: 999, background: state.accent }} /></div></Element>;
 }

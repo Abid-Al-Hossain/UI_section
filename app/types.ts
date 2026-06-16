@@ -63,6 +63,10 @@ export type SectionState = {
   contentWidth: number;
   verticalRhythm: number;
   anchorId: string;
+  hoverEnabled: boolean;
+  hoverBg: string;
+  hoverBorder: string;
+  hoverShadow: string;
 };
 
 export type StudioPreset = { id: string; family: string; archetype: string; variant: string; size: string; tags: string[]; state: Partial<SectionState> & Record<string, unknown> };
